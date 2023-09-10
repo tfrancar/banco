@@ -34,4 +34,13 @@ func main() {
 	fmt.Println(contaDoThiago)
 	fmt.Println(contaDaKelma)
 	fmt.Println(contaDoGuilherme)
+
+	//Outra maneira de declarar uma conta corrente
+	var contaDaCris *ContaCorrente
+	contaDaCris = new(ContaCorrente)
+	contaDaCris.titular = "Cris"
+	contaDaCris.saldo = 500
+	fmt.Println(contaDaCris) //retorna com &
+	fmt.Println(*contaDaCris)  //retorna sem o &
+
 }
