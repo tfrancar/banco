@@ -9,38 +9,24 @@ type ContaCorrente struct {
 	saldo         float64
 }
 
+func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
+	podeSacar := valorDoSaque <= c.saldo && valorDoSaque > 0
+	if podeSacar {
+		c.saldo -= valorDoSaque
+		return "Saque realizado com sucesso"
+	} else {
+		return "Saldo insuficiente"
+	}
+}
+
 func main() {
-	contaDoThiago := ContaCorrente{
-		titular:       "Thiago",
-		numeroAgencia: 589,
-		numeroConta:   123456,
-		saldo:         125.62,
-	}
+	contaDoThiago := ContaCorrente{}
+	contaDoThiago.titular = "Thiago"
+	contaDoThiago.numeroAgencia = 1106
+	contaDoThiago.numeroConta = 147258
+	contaDoThiago.saldo = 500.00
 
-	// Quando vamos popular todos os campos da estrura podemos usar este segundo modo.
-	contaDaKelma := ContaCorrente{
-		"Kelma",
-		589,
-		1234567,
-		1125.62,
-	}
+	fmt.Println(contaDoThiago.Sacar(600))
 
-	// Quando vamos popular campos especificos.
-	contaDoGuilherme := ContaCorrente{
-		titular: "Guilherme",
-		saldo:   1125.62,
-	}
-
-	fmt.Println(contaDoThiago)
-	fmt.Println(contaDaKelma)
-	fmt.Println(contaDoGuilherme)
-
-	//Outra maneira de declarar uma conta corrente
-	var contaDaCris *ContaCorrente
-	contaDaCris = new(ContaCorrente)
-	contaDaCris.titular = "Cris"
-	contaDaCris.saldo = 500
-	fmt.Println(contaDaCris) //retorna com &
-	fmt.Println(*contaDaCris)  //retorna sem o &
-
+	fmt.Println("Saldo atual", contaDoThiago.saldo)
 }

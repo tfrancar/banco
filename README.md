@@ -37,3 +37,41 @@ Exemplo:
 	nome string -> será inicializada com ""
 	idade int -> será inicializada com 0
 	numeroDocumento int -> será inicializada com 0
+
+
+-----XX-----XX-----XX-----XX-----XX-----XX-----XX-----XX-----XX-----XX-----XX-----
+
+CRIANDO UM FUNÇÃO VARIÁDICA
+Para criar uma variadic function, devemos preceder o tipo do argumento com reticências, conforme o exemplo abaixo:
+
+package main
+
+import (
+    "fmt"
+)
+
+func Somando(numeros ...int) int {
+    resultadoDaSoma := 0
+    for _, numero := range numeros {
+        resultadoDaSoma += numero
+    }
+    return resultadoDaSoma
+}
+
+func main() {
+    fmt.Println(Somando(1))
+    fmt.Println(Somando(1,1))
+    fmt.Println(Somando(1,1,1))
+    fmt.Println(Somando(1,1,2,4))
+}
+
+1
+2
+3
+8
+
+Program exited.
+
+
+
+Note o uso das reticências na declaração do parâmetro número: numeros ...int. Portanto, podemos criar uma função sem parâmetro, com um, dois, três, ou uma quantidade indeterminada de parâmetros com Go.
