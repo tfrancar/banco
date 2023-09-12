@@ -3,30 +3,38 @@ package main
 import (
 	"fmt"
 
-	"github.com/tfrancar/banco.git/contas"
+	"github.com/tfrancar/banco/clientes"
+	"github.com/tfrancar/banco/contas"
 )
 
 func main() {
 
-	contaDoThiago := contas.ContaCorrente{}
-	contaDoThiago.Titular = "Thiago"
-	contaDoThiago.NumeroAgencia = 1106
-	contaDoThiago.NumeroConta = 147258
-	contaDoThiago.Saldo = 500.00
+	clienteThiago := clientes.Titular{
+		Nome:      "Thiago",
+		CPF:       "123.456.789-00",
+		Profissao: "Desenvolvedor",
+	}
 
-	contaDaKelma := contas.ContaCorrente{}
-	contaDaKelma.Titular = "Kelma"
-	contaDaKelma.NumeroAgencia = 1107
-	contaDaKelma.NumeroConta = 147259
-	contaDaKelma.Saldo = 1500.00
+	clienteKelma := clientes.Titular{
+		Nome:      "Kelma",
+		CPF:       "789.123.456-89",
+		Profissao: "Financeiro",
+	}
 
-	status, valor := contaDaKelma.Transferir(200, &contaDoThiago)
-	fmt.Println(status, valor)
-	fmt.Println("Saldo da conta de", contaDoThiago.Titular, "é de R$", contaDoThiago.Saldo)
+	contaDoThiago := contas.ContaCorrente{
+		Titular:       clienteThiago,
+		NumeroAgencia: 1234,
+		NumeroConta:   253687,
+		Saldo:         500.00,
+	}
 
-	// fmt.Println(contaDoThiago.Sacar(500))
-	// saldo, valor := contaDoThiago.Depositar(1000)
-	// fmt.Println(saldo, valor)
+	contaDaKelma := contas.ContaCorrente{
+		Titular:       clienteKelma,
+		NumeroAgencia: 4321,
+		NumeroConta:   876352,
+		Saldo:         11500.00,
+	}
 
-	// fmt.Println("Saldo atual", contaDoThiago.saldo)
+	fmt.Println(contaDoThiago, contaDaKelma)
+
 }
