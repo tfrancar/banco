@@ -1,2 +1,10 @@
+
+# Ignore todos os arquivos de texto
+*.txt
+
+# Ignore arquivos relacionados às chaves de API
+.env
+
+# Ignore arquivos de configuração de vscode
 .vscode
 .gitignore
