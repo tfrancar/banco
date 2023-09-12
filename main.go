@@ -1,32 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-type ContaCorrente struct {
-	titular       string
-	numeroAgencia int
-	numeroConta   int
-	saldo         float64
-}
-
-func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
-	podeSacar := valorDoSaque <= c.saldo && valorDoSaque > 0
-	if podeSacar {
-		c.saldo -= valorDoSaque
-		return "Saque realizado com sucesso"
-	} else {
-		return "Saldo insuficiente"
-	}
-}
+	"github.com/tfrancar/banco.git/contas"
+)
 
 func main() {
-	contaDoThiago := ContaCorrente{}
-	contaDoThiago.titular = "Thiago"
-	contaDoThiago.numeroAgencia = 1106
-	contaDoThiago.numeroConta = 147258
-	contaDoThiago.saldo = 500.00
 
-	fmt.Println(contaDoThiago.Sacar(600))
+	contaDoThiago := contas.ContaCorrente{}
+	contaDoThiago.Titular = "Thiago"
+	contaDoThiago.NumeroAgencia = 1106
+	contaDoThiago.NumeroConta = 147258
+	contaDoThiago.Saldo = 500.00
 
-	fmt.Println("Saldo atual", contaDoThiago.saldo)
+	contaDaKelma := contas.ContaCorrente{}
+	contaDaKelma.Titular = "Kelma"
+	contaDaKelma.NumeroAgencia = 1107
+	contaDaKelma.NumeroConta = 147259
+	contaDaKelma.Saldo = 1500.00
+
+	status, valor := contaDaKelma.Transferir(200, &contaDoThiago)
+	fmt.Println(status, valor)
+	fmt.Println("Saldo da conta de", contaDoThiago.Titular, "é de R$", contaDoThiago.Saldo)
+
+	// fmt.Println(contaDoThiago.Sacar(500))
+	// saldo, valor := contaDoThiago.Depositar(1000)
+	// fmt.Println(saldo, valor)
+
+	// fmt.Println("Saldo atual", contaDoThiago.saldo)
 }
