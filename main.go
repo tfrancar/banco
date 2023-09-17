@@ -33,12 +33,28 @@ func main() {
 		NumeroConta:   876352,
 	}
 
+	clienteDenis := clientes.Titular{
+		Nome:      "Denis",
+		CPF:       "000.111.222.333-44",
+		Profissao: "Administrador",
+	}
+
+	contaDoDenis := contas.ContaPoupanca{
+		Titular:       clienteDenis,
+		NumeroAgencia: 4311,
+		Operacao:      013,
+		NumeroConta:   124563,
+	}
+
+	contaDoDenis.Depositar(500)
+	contaDoDenis.Sacar(50)
+	_, saldo := contaDoDenis.ObterSaldo()
+	fmt.Println("Saldo da conta poupança é: ", saldo)
+
 	contaDaKelma.Depositar(1500)
 	contaDoThiago.Depositar(500)
-
-	fmt.Println(contaDaKelma.ObterSaldo())
-	fmt.Println(contaDoThiago.ObterSaldo())
-
-	fmt.Println(contaDoThiago, contaDaKelma)
+	// fmt.Println(contaDaKelma.ObterSaldo())
+	// fmt.Println(contaDoThiago.ObterSaldo())
+	// fmt.Println(contaDoThiago, contaDaKelma)
 
 }
